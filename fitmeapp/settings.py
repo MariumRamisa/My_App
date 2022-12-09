@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-#w1zrw+3=m9r1bhp*m4nj$0%gtu7_ck_myym^*^8+f=$r5n6t9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'user_calorie_details',
     'rest_framework.authtoken',
     'user_food_intake_details',
+    'exercise',
+    'burned_cal'
+
 ]
 
 MIDDLEWARE = [

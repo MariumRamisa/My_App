@@ -1,23 +1,21 @@
 from django.db import models
 from user.models import user
-from food.models import foodCalories
+from exercise.models import exercisecal
 # Create your models here.
 
 
-class user_food_intake_detail(models.Model):
+class burned_cal_detail(models.Model):
     user_id = models.ForeignKey(
         user, on_delete=models.CASCADE, primary_key=True)
-    meal_type = models.CharField(max_length=50)
     date = models.DateField()
-    food_name = models.ForeignKey(foodCalories, on_delete=models.CASCADE)
+    exercise_name = models.ForeignKey(exercisecal, on_delete=models.CASCADE)
     quantity = models.FloatField()
 
     def __str__(self):
-        return self.meal_type
+        return self.exercise_name.exercise_name
 
     @property
-    def total_cal(self):
+    def burned_cal(self):
         q = self.quantity
-        c = self.food_name.calorie
-
+        c = self.exercise_name.calorie
         return q*c
