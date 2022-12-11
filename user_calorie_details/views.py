@@ -15,8 +15,6 @@ class user_calorie_list(generics.GenericAPIView, mixins.ListModelMixin, mixins.C
     serializer_class = usercalorieserializer
     queryset = user_calorie_detail.objects.all()
     lookup_field = 'user_id'
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
 
     def get(self, request, user_id=None):
 

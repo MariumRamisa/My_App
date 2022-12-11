@@ -13,8 +13,6 @@ class food_intake(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateM
     serializer_class = food_intakeserializer
     queryset = user_food_intake_detail.objects.all()
     lookup_field = 'user_id'
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
 
     def get(self, request, user_id=None):
 

@@ -14,8 +14,6 @@ class user_detail_list(generics.GenericAPIView, mixins.ListModelMixin, mixins.Cr
     serializer_class = user_detailserializer
     queryset = user_details.objects.all()
     lookup_field = 'user_id'
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
 
     def get(self, request, user_id=None):
 

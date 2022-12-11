@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .models import user
 from .serializers import userserializer
-from rest_framework import generics, mixins
+from rest_framework import generics, mixins, status
+from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -12,9 +13,7 @@ class user_list(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateMod
                 mixins.RetrieveModelMixin, mixins.DestroyModelMixin, mixins.UpdateModelMixin):
     serializer_class = userserializer
     queryset = user.objects.all()
-    lookup_field = 'id'
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    lookup_field = ['id', 'email']
 
     def get(self, request, id=None):
 
@@ -24,7 +23,17 @@ class user_list(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateMod
             return self.list(request)
 
     def post(self, request):
-        return self.create(request)
+        data = request.data
+        serializer = self.serializer_class(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            response = {
+                "message": "User Created Successfully",
+                "data": serializer.data
+            }
+            return Response(data=response, status=status.HTTP_201_CREATED)
+        else:
+            return Response(data=serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, id=None):
         return self.update(request, id)

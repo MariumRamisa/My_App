@@ -13,8 +13,6 @@ class burned_cal(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateMo
     serializer_class = burned_calserializer
     queryset = burned_cal_detail.objects.all()
     lookup_field = 'user_id'
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
 
     def get(self, request, user_id=None):
 
