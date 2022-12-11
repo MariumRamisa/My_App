@@ -1,11 +1,13 @@
 from django.db import models
+from food.models import foodCalories
 
 # Create your models here.
 
 
 class nutrient_list(models.Model):
 
-    food_name = models.CharField(max_length=50)
+    food_name = models.ForeignKey(
+        foodCalories, on_delete=models.CASCADE, primary_key=True)
     quantity = models.FloatField()
     protien = models.FloatField()
     carbohydrate = models.FloatField()
@@ -25,4 +27,4 @@ class nutrient_list(models.Model):
 
 
 def __str__(self):
-    return self.food_name
+    return self.food_name.food_name

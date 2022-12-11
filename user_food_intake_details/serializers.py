@@ -16,4 +16,4 @@ class food_intakeserializer(serializers.ModelSerializer):
 
     class Meta:
         model = user_food_intake_detail
-        fields = ['id', 'user_id', 'meal_type', 'date']
+        fields = ['user_id', 'meal_type', 'date']

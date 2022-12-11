@@ -10,11 +10,11 @@ class exercise_detail_list(generics.GenericAPIView, mixins.ListModelMixin, mixin
                            mixins.RetrieveModelMixin, mixins.DestroyModelMixin, mixins.UpdateModelMixin):
     serializer_class = exerciseserializer
     queryset = exercisecal.objects.all()
-    lookup_field = 'id'
+    lookup_field = 'exercise_name'
 
-    def get(self, request, id=None):
+    def get(self, request, exercise_name=None):
 
-        if id:
+        if exercise_name:
             return self.retrieve(request)
         else:
             return self.list(request)
@@ -22,8 +22,8 @@ class exercise_detail_list(generics.GenericAPIView, mixins.ListModelMixin, mixin
     def post(self, request):
         return self.create(request)
 
-    def put(self, request, id=None):
+    def put(self, request, exercise_name=None):
         return self.update(request, id)
 
-    def delete(self, request, id):
-        return self.destroy(request, id)
+    def delete(self, request, exercise_name):
+        return self.destroy(request, exercise_name)

@@ -13,7 +13,7 @@ class user_list(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateMod
                 mixins.RetrieveModelMixin, mixins.DestroyModelMixin, mixins.UpdateModelMixin):
     serializer_class = userserializer
     queryset = user.objects.all()
-    lookup_field = ['id', 'email']
+    lookup_field = 'id'
 
     def get(self, request, id=None):
 

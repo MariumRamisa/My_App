@@ -10,11 +10,11 @@ class nutrition_list(generics.GenericAPIView, mixins.ListModelMixin, mixins.Crea
                      mixins.RetrieveModelMixin, mixins.DestroyModelMixin, mixins.UpdateModelMixin):
     serializer_class = nutritionserializer
     queryset = nutrient_list.objects.all()
-    lookup_field = 'id'
+    lookup_field = 'food_name'
 
-    def get(self, request, id=None):
+    def get(self, request, food_name=None):
 
-        if id:
+        if food_name:
             return self.retrieve(request)
         else:
             return self.list(request)
@@ -22,8 +22,8 @@ class nutrition_list(generics.GenericAPIView, mixins.ListModelMixin, mixins.Crea
     def post(self, request):
         return self.create(request)
 
-    def put(self, request, id=None):
-        return self.update(request, id)
+    def put(self, request, food_name=None):
+        return self.update(request, food_name)
 
-    def delete(self, request, id):
-        return self.destroy(request, id)
+    def delete(self, request, food_name):
+        return self.destroy(request, food_name)
